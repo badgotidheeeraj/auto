@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Automatic Checkbox Check</title>
+    <script src="{% static 'assets/js/ram.js' %}"></script>
+  </head>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="input-group mb-0">
+      <label class="h3">File Upload</label>
+      <input
+        type="file"
+        required
+        class="form-control ms-lg-2 accordion rounded-4 mr-3"
+        name="upload"
+        aria-describedby="basic-addon1"
+      />
+
+      <button type="submit" class="btn btn-light rounded-4 mr-2">
+        upload files
+      </button>
+    </div>
+  </form>
+  <div id="data" data-data="{{form}}"></div>
+
+  <body>
+    <label id="my"></label><br />
+    <input
+      type="checkbox"
+      onclick="getCheckboxValue()"
+      id="myCheckbox"
+      checked
+    />
+    check
+  </body>
+  <script>
+    var dataFromBackend = {{ data | safe }};
+     processData(dataFromBackend);
+  </script>
+</html>
